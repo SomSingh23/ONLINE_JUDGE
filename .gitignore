@@ -3,7 +3,9 @@ node_modules/
 dist/
 coverage/
 build/
-
+user_input_code/
+user_output/
+user_input_test_case/
 # Logs and debugging
 npm-debug.log*
 yarn-debug.log*
