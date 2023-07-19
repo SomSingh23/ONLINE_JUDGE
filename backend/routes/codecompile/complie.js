@@ -4,6 +4,7 @@ const { v4: uuid } = require("uuid");
 const createAndWriteFile = require("../../runcode/createAndWriteFile");
 const runCpp = require("../../runcode/runCpp");
 const runPy = require("../../runcode/runPy");
+const runC = require("../../runcode/runC");
 router.use(express.urlencoded({ extended: true }));
 router.post("/", async (req, res) => {
   try {
@@ -19,6 +20,7 @@ router.post("/", async (req, res) => {
     let output;
     if (lang === "cpp") output = await runCpp(codeFile, inputFile);
     else if (lang === "py") output = await runPy(codeFile, inputFile);
+    else if (lang === "c") output = await runC(codeFile, inputFile);
     await createAndWriteFile(outputFile, output);
 
     res.send(output);
