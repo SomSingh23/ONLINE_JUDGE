@@ -3,7 +3,7 @@ const runPy = async (filePath, inputPath) => {
   const runPython = `python ${filePath}<${inputPath}`;
   return new Promise((resolve, reject) => {
     let timeOutId = setTimeout(() => {
-      console.log("Checking for INF loops or File handing");
+      console.log("Checking for INF loops or File handing -> python");
       reject("");
     }, 4000);
     child_process.exec(runPython, (error, stdout, stderr) => {
