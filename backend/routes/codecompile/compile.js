@@ -23,9 +23,9 @@ router.post("/", async (req, res) => {
     else if (lang === "c") output = await runC(codeFile, inputFile);
     await createAndWriteFile(outputFile, output);
 
-    res.send(output);
+    res.status(200).send(output);
   } catch (err) {
-    res.status(500).send(err);
+    res.status(400).send(err);
   }
 });
 
