@@ -11,8 +11,7 @@ let createAndWriteFile = async (name, content) => {
     console.log("sucessfully created file and written");
   } catch (e) {
     console.log(e.message);
-    console.log("error inside createAndWriteFile");
-    throw new Error("error creating");
+    throw new Error("Error while creating file");
   }
   //   console.log("working");
 };
