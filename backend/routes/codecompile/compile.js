@@ -5,7 +5,8 @@ const createAndWriteFile = require("../../runcode/createAndWriteFile");
 const runCpp = require("../../runcode/runCpp");
 const runPy = require("../../runcode/runPy");
 const runC = require("../../runcode/runC");
-router.use(express.urlencoded({ extended: true }));
+router.use(express.urlencoded({ extended: true })); // for urlencoded format
+router.use(express.json()); // handling default axios post request which send data in json format
 router.post("/", async (req, res) => {
   try {
     const { lang, code, username, input } = req.body;
@@ -26,6 +27,7 @@ router.post("/", async (req, res) => {
     res.status(200).send(output);
   } catch (err) {
     res.status(400).send(err);
+    console.log("error respond send");
   }
 });
 

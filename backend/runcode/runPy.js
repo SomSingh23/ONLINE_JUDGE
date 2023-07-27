@@ -4,8 +4,8 @@ const runPy = async (filePath, inputPath) => {
   return new Promise((resolve, reject) => {
     let timeOutId = setTimeout(() => {
       console.log("Checking for INF loops or File handing -> python");
-      reject("");
-    }, 4000);
+      reject("INF loops or Too many requests or File Handling");
+    }, 8000);
     child_process.exec(runPython, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
