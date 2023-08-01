@@ -13,7 +13,7 @@ const runCpp = async (codePath, inputPath) => {
 
   return new Promise((resolve, reject) => {
     let timeOutId = setTimeout(() => {
-      console.log("Checking for INF loops or File handing -> C");
+      console.log("Checking for INF loops or File handing -> Cpp");
       reject("Inf loop OR File handing OR Too many requests");
       handleError(constExe);
     }, 8000);

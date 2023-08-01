@@ -1,0 +1,26 @@
+{
+  "name": "online_judge",
+  "version": "1.0.0",
+  "description": "OJ project .json file",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/SomSingh23/ONLINE_JUDGE.git"
+  },
+  "author": "som singh lodhi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SomSingh23/ONLINE_JUDGE/issues"
+  },
+  "homepage": "https://github.com/SomSingh23/ONLINE_JUDGE#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4",
+    "uuid": "^9.0.0"
+  }
+}

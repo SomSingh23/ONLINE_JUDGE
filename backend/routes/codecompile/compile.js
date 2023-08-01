@@ -13,9 +13,9 @@ router.post("/", async (req, res) => {
     const c = `${username}-${uuid()}.${lang}`;
     const i = `${username}-${uuid()}.txt`;
     const o = `${username}-${uuid()}.txt`;
-    const codeFile = "backend/runcode/user_input_code/" + c;
-    const inputFile = "backend/runcode/user_input_test_case/" + i;
-    const outputFile = "backend/runcode/user_output/" + o;
+    const codeFile = "/runcode/user_input_code/" + c;
+    const inputFile = "/runcode/user_input_test_case/" + i;
+    const outputFile = "/runcode/user_output/" + o;
     await createAndWriteFile(codeFile, code);
     await createAndWriteFile(inputFile, input);
     let output;
