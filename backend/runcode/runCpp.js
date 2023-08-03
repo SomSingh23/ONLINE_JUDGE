@@ -2,14 +2,19 @@ const child_process = require("child_process");
 const { v4 } = require("uuid");
 const uuid = v4;
 const handleError = async (x) => {
-  await child_process.exec(`rm ${x}.exe`);
-  console.log("handle error called");
-  return true;
+  console.log("Error while compiling cpp code");
 };
-
+const deleteExeFile = async (x) => {
+  try {
+    await child_process.exec(`rm ${x}`);
+    console.log("deletion completed");
+  } catch (e) {
+    console.log("deletion failed");
+  }
+};
 const runCpp = async (codePath, inputPath) => {
   let constExe = uuid();
-  const compileAndRunCommand = `g++ ${codePath} -o ${constExe} && ${constExe} <${inputPath} && rm ${constExe}.exe`;
+  const compileAndRunCommand = `g++ ${codePath} -o ${constExe} && ./${constExe} <${inputPath}`;
 
   return new Promise((resolve, reject) => {
     let timeOutId = setTimeout(() => {
@@ -17,6 +22,9 @@ const runCpp = async (codePath, inputPath) => {
       reject("Inf loop OR File handing OR Too many requests");
       handleError(constExe);
     }, 8000);
+    setTimeout(() => {
+      deleteExeFile(constExe);
+    }, 16000);
     child_process.exec(compileAndRunCommand, (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);

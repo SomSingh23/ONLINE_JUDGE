@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const router = express.Router();
 const { v4: uuid } = require("uuid");
 const createAndWriteFile = require("../../runcode/createAndWriteFile");
@@ -13,9 +14,9 @@ router.post("/", async (req, res) => {
     const c = `${username}-${uuid()}.${lang}`;
     const i = `${username}-${uuid()}.txt`;
     const o = `${username}-${uuid()}.txt`;
-    const codeFile = "/runcode/user_input_code/" + c;
-    const inputFile = "/runcode/user_input_test_case/" + i;
-    const outputFile = "/runcode/user_output/" + o;
+    const codeFile = "runcode/user_input_code/" + c;
+    const inputFile = "runcode/user_input_test_case/" + i;
+    const outputFile = "runcode/user_output/" + o;
     await createAndWriteFile(codeFile, code);
     await createAndWriteFile(inputFile, input);
     let output;
