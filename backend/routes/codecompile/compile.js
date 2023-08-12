@@ -27,7 +27,7 @@ router.post("/", async (req, res) => {
     res.status(200).send(output);
   } catch (err) {
     res.status(400).send(err);
-    console.log("error respond send");
+    console.log("something went wrong");
   }
 });
 
