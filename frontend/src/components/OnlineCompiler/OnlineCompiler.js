@@ -3,8 +3,11 @@ import axios from "axios";
 import "./OnlineCompiler.css";
 
 const OnlineCompiler = () => {
-  const [selectedLanguage, setSelectedLanguage] = useState("c");
-  const [code, setCode] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState(``);
+  const [_code, setCode] = useState(``);
+  const [input, setInput] = useState(``);
+  const [output, setOutput] = useState(``);
+  const [compileing, setCompiling] = useState(false);
 
   const handleLanguageChange = (event) => {
     setSelectedLanguage(event.target.value);
@@ -14,22 +17,33 @@ const OnlineCompiler = () => {
     setCode(event.target.value);
   };
 
+  const handleInput = (event) => {
+    setInput(event.target.value);
+  };
+
   const handleCompile = async () => {
+    console.log("Handle Compile Request");
+    console.log(selectedLanguage);
+    console.log(_code);
     let data = {
-      lang: "py",
-      code: "print('hello world')",
+      lang: selectedLanguage,
+      code: _code,
+      input: input,
+      username: "somlatestreact",
     };
     try {
+      setCompiling(true);
       const response = await axios.post(
         `http://localhost:5000/compilecode`,
-        data,
-        {
-          withCredentials: true,
-        }
+        data
       );
-      return response.data;
+      console.log(response.data);
+      setOutput(response.data);
+      setCompiling(false);
     } catch (error) {
-      console.log("Error while registering user", error.message);
+      setOutput(error.message);
+      console.log("Error while compiling code", error.message);
+      setCompiling(false);
     }
   };
 
@@ -52,14 +66,32 @@ const OnlineCompiler = () => {
         <label htmlFor="code">Enter Your Code:</label>
         <textarea
           id="code"
-          value={code}
+          value={_code}
           onChange={handleCodeChange}
           placeholder={`Write your ${selectedLanguage} code here...`}
+        />
+      </div>
+      <div className="custom-input">
+        <label htmlFor="input">Custom Input:</label>
+        <textarea
+          id="input"
+          value={input}
+          onChange={handleInput}
+          placeholder="Enter custom input here..."
         />
       </div>
       <button className="compile-button" onClick={handleCompile}>
         Compile
       </button>
+      <div className="output">
+        <label>Output:</label>
+        <textarea
+          id="output"
+          value={compileing ? "compiling..." : output}
+          readOnly
+          placeholder="Output will be displayed here..."
+        />
+      </div>
     </div>
   );
 };
